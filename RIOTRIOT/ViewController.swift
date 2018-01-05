@@ -7,19 +7,23 @@
 //
 
 import UIKit
-
-class ViewController: UIViewController {
-
+import WebKit
+class ViewController: UIViewController, WKUIDelegate {
+    
+    var webView: WKWebView!
+    
+    override func loadView() {
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.uiDelegate = self
+        view = webView
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+        
+        let myURL = URL(string: "http://www.riotriot.net")
+        let myRequest = URLRequest(url: myURL!)
+        webView.load(myRequest)
+    }}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
-}
 
